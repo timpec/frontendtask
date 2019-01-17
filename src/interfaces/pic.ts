@@ -10,8 +10,8 @@
   */
 
  export interface Pic {
+      filename: string;
       title: string;
-      details: string;
-      thumbnail: string;
-      original: string;
+      description: string;
+      time_added: string;
   }
