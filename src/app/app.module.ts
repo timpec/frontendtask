@@ -12,6 +12,7 @@ import { MediaProvider } from '../providers/media/media';
 import { MenuPage } from '../pages/menu/menu';
 import { LogoutPage } from '../pages/logout/logout';
 import { LoginRegisterPage } from '../pages/login-register/login-register';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginRegisterPage } from '../pages/login-register/login-register';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
