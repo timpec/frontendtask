@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 import { HomePage } from '../home/home';
+import { User } from '../../interfaces/user';
  
 /**
  * Generated class for the LogoutPage page.
@@ -12,9 +13,9 @@ import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-logout',
-  templateUrl: 'logout.html',
+  templateUrl: 'profile.html',
 })
-export class LogoutPage {
+export class ProfilePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,7 +23,7 @@ export class LogoutPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LogoutPage');
+    console.log('ionViewDidLoad ProfilePage');
   }
 
   logout(){
@@ -30,5 +31,13 @@ export class LogoutPage {
     this.mediaProvider.loggedIn = false;
     this.navCtrl.push(HomePage);
   }
+
+  /*
+  getAvatar() {
+    this.mediaProvider.getSingleMedia(x.file_id).
+    subscribe((file: Tag) =>{
+     this.picArray.push(file);
+  }
+  */
 
 }

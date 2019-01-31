@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pic } from '../../interfaces/pic'
-import { User, logInResponse, registerResponse, checkResponse } from '../../interfaces/user';
+import { User, logInResponse, registerResponse } from '../../interfaces/user';
 
 /*
   Generated class for the MediaProvider provider.
@@ -14,6 +14,7 @@ export class MediaProvider {
 
   url = 'https://media.mw.metropolia.fi/wbma';
   picArray: Pic[];
+  user: User = null;
 
   loggedIn = false;
 
@@ -22,6 +23,10 @@ export class MediaProvider {
 
   getAllMedia() {
     return this.http.get<Pic[]>(this.url + '/media');
+  }
+
+  getAvatar(tag) {
+    return this.http.get<Pic[]>(this.url + '/tags/:' + tag);
   }
 
   getSingleMedia(id) {
@@ -54,7 +59,6 @@ export class MediaProvider {
         'Content-type': 'application/json'
       })
     };
-
     return this.http.get(this.url + '/users/username/'+ user.username);
   }
 }

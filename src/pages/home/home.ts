@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export class HomePage implements OnInit {
 
   picArray: Pic[] = [];
-  mediaArray: Observable<Pic[]>
+  mediaArray: Observable<Pic[]>;
   url = "https://media.mw.metropolia.fi/wbma/uploads/";
   
   constructor(
@@ -30,15 +30,32 @@ export class HomePage implements OnInit {
   getAllFiles(){
     this.mediaArray = this.mediaProvider.getAllMedia();
     console.log(this.mediaArray);
+       /*
+    this.mediaProvider.getAllMedia().subscribe((data: Pic[]) => {
+      console.log('data', data);
+
+      this.picArray = data.map((pic: Pic) =>{
+        const nameArray = pic.filename.split('.');
+        console.log(nameArray);
+        pic.thumbnails = {
+          160: nameArray[0] + '-tn160.png',
+        };
+        console.log("pic", pic);
+        return pic;  
+      });
+     
+     data.forEach((pic: Pic) => {
+       //add files to pic array
+       this.mediaProvider.getSingleMedia(pic.file_id).
+       subscribe((file: Pic) =>{
+        this.picArray.push(file);
+       });
+     });
+    });
+*/
  
   }
 
-  /*
-  getAllFiles2(){
-    this.picArray2 = this.mediaProvider.getAllMedia();
-    console.log(this.picArray2);
-  }
-  */
 
   loadItems() {
     return this.http.get<Pic[]>(this.url + "/media");

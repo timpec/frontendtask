@@ -20,7 +20,7 @@ export class ThumbnailPipe implements PipeTransform {
 
   }
 
-  transform(id: number, ...args) {
+  async transform(id: number, ...args) {
     console.log(args);
     // Impure version
     /*
@@ -47,22 +47,22 @@ export class ThumbnailPipe implements PipeTransform {
   return this.thumbnail;
   */
  // Pure version
- return new Promise((resolve, reject) => {
-  this.mediaProvider.getSingleMedia(id).subscribe((response: Pic) => {
-    switch (args[0]){
+  return new Promise((resolve, reject) => {
+    this.mediaProvider.getSingleMedia(id).subscribe((response: Pic) => {
+    switch (args[0]) {
       case 'large':
-         resolve(response.thumbnails.w640);
-        break;
+      resolve(response.thumbnails.w640);
+      break;
       case 'medium':
       resolve(response.thumbnails.w320);
-        break;
+      break;
       case 'screenshot':
       resolve(response.screenshot);
-        break;
+      break;
       default:
       resolve(response.thumbnails.w160);
         }
-      });
     });
+  });
   }
 }
