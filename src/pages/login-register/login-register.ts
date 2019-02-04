@@ -22,6 +22,7 @@ export class LoginRegisterPage {
   showRegister = false;
   confirmUser="";
   confirmPassword: string;
+  fullName: boolean;
 
 
   constructor(public navCtrl: NavController,
@@ -48,7 +49,7 @@ export class LoginRegisterPage {
 
   submitReg(){
     this.checkEmail();
-    //this.checkFullname();
+    this.checkFullname();
     if(this.user.username =="" || this.user.password ==""){
       const alert = this.alertCtrl.create({
         title: 'Warning',
@@ -70,7 +71,7 @@ export class LoginRegisterPage {
       });
       alert.present();
     }else{
-    if(this.user.password == this.confirmPassword){
+    if(this.user.password === this.confirmPassword){
       this.register();
     }else{
       const alert = this.alertCtrl.create({
@@ -100,7 +101,7 @@ export class LoginRegisterPage {
         } else {
           const alert = this.alertCtrl.create({
             title: 'Warning',
-            subTitle: 'Username must be atleast 4 characters long.',
+            subTitle: 'Username must be atleast 3 characters long.',
             buttons: ['Dismiss']
           });
           alert.present();
@@ -124,10 +125,10 @@ export class LoginRegisterPage {
       this.user.email="";
     }
   }
-  /*
+  
   checkFullname(){
     var nameformat = /^[a-zA-Z ]+$/;
-    if(!this.user.full_name.match(nameformat) || this.user.full_name == "") {
+    if(!this.user.full_name.match(nameformat) && this.user.full_name != "") {
       const alert = this.alertCtrl.create({
         title: 'Warning',
         subTitle: 'Your full name contains non alphabetic characters.',
@@ -137,7 +138,7 @@ export class LoginRegisterPage {
       this.user.full_name="";
     }
   }
-  */
+
 
   login() {
     this.mediaProvider.login(this.user).subscribe(

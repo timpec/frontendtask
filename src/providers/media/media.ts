@@ -61,4 +61,14 @@ export class MediaProvider {
     };
     return this.http.get(this.url + '/users/username/'+ user.username);
   }
+
+  upload(data: any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': localStorage.getItem('token'),
+      }),
+    };
+
+    return this.http.post<logInResponse>(this.url + '/media', data, httpOptions)
+  }
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pic } from '../../interfaces/pic';
 import { MediaProvider } from '../../providers/media/media';
 import { Observable } from 'rxjs/Observable';
+import { UploadPage } from '../upload/upload';
 
 
 
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   picArray: Pic[] = [];
   mediaArray: Observable<Pic[]>;
@@ -23,7 +24,7 @@ export class HomePage implements OnInit {
     public mediaProvider: MediaProvider) {
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.getAllFiles();
   };
 
@@ -54,6 +55,10 @@ export class HomePage implements OnInit {
     });
 */
  
+  }
+
+  uploadButton(){
+    this.navCtrl.push(UploadPage);
   }
 
 
