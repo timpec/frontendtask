@@ -5,6 +5,7 @@ import { Pic } from '../../interfaces/pic';
 import { MediaProvider } from '../../providers/media/media';
 import { Observable } from 'rxjs/Observable';
 import { UploadPage } from '../upload/upload';
+import { PlayerPage } from '../player/player';
 
 
 
@@ -14,7 +15,6 @@ import { UploadPage } from '../upload/upload';
 })
 export class HomePage {
 
-  picArray: Pic[] = [];
   mediaArray: Observable<Pic[]>;
   url = "https://media.mw.metropolia.fi/wbma/uploads/";
   
@@ -61,9 +61,11 @@ export class HomePage {
     this.navCtrl.push(UploadPage);
   }
 
-
-  loadItems() {
-    return this.http.get<Pic[]>(this.url + "/media");
+  viewItem(image) {
+    this.navCtrl.push(PlayerPage, {
+      image: image
+    });
+    console.log(image);
   }
 }
 

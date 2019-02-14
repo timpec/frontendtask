@@ -14,6 +14,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { LoginRegisterPage } from '../pages/login-register/login-register';
 import { PipesModule } from '../pipes/pipes.module';
 import { UploadPage } from '../pages/upload/upload';
+import { PlayerPage } from '../pages/player/player';
+import { MyFilesPage } from '../pages/my-files/my-files';
+import { ModifyPage } from '../pages/modify/modify';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { UploadPage } from '../pages/upload/upload';
     MenuPage,
     ProfilePage,
     LoginRegisterPage,
-    UploadPage
+    UploadPage,
+    PlayerPage,
+    MyFilesPage,
+    ModifyPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,10 @@ import { UploadPage } from '../pages/upload/upload';
     MenuPage,
     ProfilePage,
     LoginRegisterPage,
-    UploadPage
+    UploadPage,
+    PlayerPage,
+    MyFilesPage,
+    ModifyPage
   ],
   providers: [
     StatusBar,

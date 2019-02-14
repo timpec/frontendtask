@@ -16,3 +16,6 @@
   w320?: string;
   w640?: string;
 }
+export interface DeleteResponse {
+  message: string;
+}

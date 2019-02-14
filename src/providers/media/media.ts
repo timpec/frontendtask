@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pic } from '../../interfaces/pic'
+import { Pic, DeleteResponse } from '../../interfaces/pic'
 import { User, logInResponse, registerResponse } from '../../interfaces/user';
+
 
 /*
   Generated class for the MediaProvider provider.
@@ -26,11 +27,48 @@ export class MediaProvider {
   }
 
   getAvatar(tag) {
-    return this.http.get<Pic[]>(this.url + '/tags/:' + tag);
+    return this.http.get<Pic[]>(this.url + '/tags/' + tag);
   }
 
   getSingleMedia(id) {
     return this.http.get<Pic>(this.url + '/media/' + id);
+  }
+
+  getUserMedia() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': localStorage.getItem('token'),
+      })
+    };
+    return this.http.get<Pic[]>(this.url + '/media/user', httpOptions);
+  }
+
+  deleteMedia(id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': localStorage.getItem('token'),
+      })
+    };
+    return this.http.delete<DeleteResponse>(this.url +'/media/' + id, httpOptions);
+  }
+
+  updateFile(id, modify){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': localStorage.getItem('token'),
+        'Content-type': 'application/json'
+      })
+    };
+    return this.http.put<DeleteResponse>(this.url +'/media/' + id, modify, httpOptions);
+  }
+
+  getUserById(id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': localStorage.getItem('token'),
+      })
+    };
+    return this.http.get<User>(this.url + '/users/'+ id, httpOptions);
   }
 
   login(user: User){
